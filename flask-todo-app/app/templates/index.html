@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <h1>My Todo List</h1>
+
+        <form action="{{ url_for('main.add_todo') }}" method="POST" class="add-form">
+            <input type="text" name="title" placeholder="What needs doing?" required autofocus>
+            <button type="submit">Add</button>
+        </form>
+
+        {% if todos %}
+        <ul class="todo-list">
+            {% for todo in todos %}
+            <li class="todo-item {{ 'done' if todo.done else '' }}">
+                <form action="{{ url_for('main.toggle_todo', todo_id=todo.id) }}" method="POST" class="toggle-form">
+                    <button type="submit" class="toggle-btn" aria-label="Toggle done">
+                        {{ '✔' if todo.done else '○' }}
+                    </button>
+                </form>
+                <span class="title">{{ todo.title }}</span>
+                <form action="{{ url_for('main.delete_todo', todo_id=todo.id) }}" method="POST" class="delete-form">
+                    <button type="submit" class="delete-btn" aria-label="Delete">✕</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty-state">No todos yet — add one above.</p>
+        {% endif %}
+    </main>
+</body>
+</html>
