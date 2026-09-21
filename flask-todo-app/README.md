@@ -11,30 +11,6 @@ the HTML frontend.
 - Minimal, responsive HTML/CSS frontend (no JS framework required)
 - JSON API endpoints under `/api/todos` for programmatic access
 
-## Project structure
-
-```
-flask-todo-app/
-├── app/
-│   ├── __init__.py        # Application factory
-│   ├── models.py          # SQLAlchemy models
-│   ├── routes.py          # Routes / views (blueprint)
-│   ├── templates/
-│   │   └── index.html
-│   └── static/
-│       ├── css/
-│       │   └── style.css
-│       └── js/
-├── instance/               # Local SQLite DB lives here (gitignored)
-├── tests/
-│   └── test_app.py
-├── config.py               # App configuration
-├── run.py                  # Entry point
-├── requirements.txt
-├── .gitignore
-└── README.md
-```
-
 ## Setup
 
 ```bash
@@ -54,14 +30,6 @@ python run.py
 ```
 
 The app will be available at `http://127.0.0.1:5000`.
-
-## API
-
-| Method | Endpoint             | Description         |
-|--------|-----------------------|----------------------|
-| GET    | `/api/todos`           | List all todos       |
-| POST   | `/api/todos`           | Create a todo (`{"title": "..."}`) |
-| DELETE | `/api/todos/<id>`      | Delete a todo        |
 
 ## Running tests
 
